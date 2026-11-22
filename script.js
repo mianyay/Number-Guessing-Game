@@ -32,7 +32,7 @@ function numberRange() {
     const newMax = parseInt(maxInput.value);
 
     if (isNaN(newMin) ||  isNaN(newMax) || newMin >= newMax) {
-        result.textContent = `Please enter a valid range of numbers between ${min} - ${max}`;
+        result.textContent = `Please enter a valid range of numbers between ${min} - ${max}!!! >:(`;
         result.style.fontSize = "1rem";
         return false;
     }
@@ -77,6 +77,7 @@ function addhistory(guess, type) {
     historyBox.appendChild(entry);
 }
 
+// confetti of the randomised number will appear
 let confettiTimer = null;
 
 function spawnconfettinumber(number) {
@@ -87,7 +88,7 @@ function spawnconfettinumber(number) {
     piece.style.fontSize = `${16 + Math.random() * 28}px`
     piece.style.animationDuration = `${3 + Math.random() * 3}s`;
     piece.style.setProperty("--spin", `${(Math.random() - 0.5) * 720}deg`);
-    piece.addEventListener("animationed", () => piece.remove());
+    piece.addEventListener("animationend", () => piece.remove());
     confettiBox.appendChild(piece);
 }
 
@@ -106,18 +107,19 @@ guessBtn.addEventListener("click", () => {
     const guess = parseInt(guessInput.value);
 
     if (isNaN(guess) || guess < min || guess > max) {
-        result.textContent = `Please enter valid number between ${min} - ${max}`;
+        result.textContent = `Enter valid number between ${min} - ${max} pleaseee`;
         result.style.fontSize = "1rem";
         return;
     }
 
     result.style.fontSize = "";
 
+    // prevents user from guessing the same number again
     const guessedAlready = [...historyBox.children].some(
         entry => parseInt(entry.textContent) === guess
     );
     if (guessedAlready) {
-        result.textContent = `You already tried ${guess}`;
+        result.textContent = `You already tried ${guess}...`;
         result.style.fontSize = "1rem";
         return;
     }
@@ -168,3 +170,5 @@ playagainBtn.addEventListener("animationend", () => {
 
 numberRange()
 newGame()
+
+// guess the number gameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee

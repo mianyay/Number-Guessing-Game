@@ -166,3 +166,29 @@ button:hover {
         transform: translateY(110vh) rotate(var(--spin));
     }
 }
+
+.face {
+    position: fixed;
+    left: 100px;
+    width: 400px;
+    max-width: 30vw;
+}
+
+.face2 {
+    position: fixed;
+    right: 100px;
+    width: 400px;
+    max-width: 30vw;
+}
+
+.face:hover, .face2:hover {
+    animation: wiggle 1s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(-6deg);}
+    50% {transform: rotate(6deg);}
+    75% {transform: rotate(-4deg);}
+    100% {transform: rotate(0deg);}
+}

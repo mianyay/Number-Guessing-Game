@@ -7,6 +7,7 @@ const highscorebtn = document.getElementById("highscore");
 const minInput = document.getElementById("min-input");
 const maxInput = document.getElementById("max-input");
 const promptText = document.getElementById("prompt");
+const historyBox = document.getElementById("history");
 
 let min = 1
 let max = 100
@@ -54,6 +55,7 @@ function newGame() {
     playagainBtn.disabled = true;
     minInput.disabled = false;
     maxInput.disabled = false;
+    historyBox.innerHTML = ""
     updatehighscore()
     guessInput.focus();
 }
@@ -65,6 +67,13 @@ function duringrangeChange() {
 
 minInput.addEventListener("change", duringrangeChange);
 maxInput.addEventListener("change", duringrangeChange);
+
+function addhistory(guess, type) {
+    const entry = document.createElement("span");
+    entry.classList.add("entry", type);
+    entry.textContent = type === "low" ? `${guess} too high` : type === "high" ? `${guess} too low` : `${guess} ✓` 
+    historyBox.appendChild(entry);
+}
 
 guessBtn.addEventListener("click", () => {
     const guess = parseInt(guessInput.value);
@@ -83,6 +92,7 @@ guessBtn.addEventListener("click", () => {
     maxInput.disabled = true;
 
     if (guess === randomNumber) {
+        addhistory(guess, "correct")
         result.textContent = `You guessed the right number! It was ${randomNumber}`;
 
         if (highScore === null || attempts < highScore) {
@@ -99,8 +109,10 @@ guessBtn.addEventListener("click", () => {
         minInput.disabled = false;
         maxInput.disabled = false;
     } else if (guess < randomNumber) {
+        addhistory(guess, "low");
         result.textContent = "Your guess is too low! Try again";
     } else {
+        addhistory(guess, "high");
         result.textContent = "Your guess is too high. Try again";
     }
 });

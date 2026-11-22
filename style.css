@@ -114,3 +114,32 @@ button:hover {
     background: none;
     opacity: 0.35;
 }
+
+#history {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.entry {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.entry.low {
+    background: #4a6cf7;
+}
+
+.entry.high {
+    background: #e5484d;
+}
+
+.entry.correct {
+    background: #30a46c;
+}

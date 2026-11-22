@@ -85,6 +85,16 @@ guessBtn.addEventListener("click", () => {
     }
 
     result.style.fontSize = "";
+    
+    const guessedAlready = [...historyBox.children].some(
+        entry => parseInt(entry.textContent) === guess
+    );
+    if (guessedAlready) {
+        result.textContent = `You already tried ${guess}`;
+        result.style.fontSize = "1rem";
+        return;
+    }
+
     attempts++;
     attemptsbtn.textContent = `Attempts: ${attempts}`;
 

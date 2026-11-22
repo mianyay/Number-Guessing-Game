@@ -89,7 +89,7 @@ guessBtn.addEventListener("click", () => {
             highScore = attempts;
             localStorage.setItem(scoreKey(), highScore);
             updatehighscore();
-            result.textContent += "- New best score!"
+            result.textContent += " - New best score!"
         }
 
         gameOver = true;

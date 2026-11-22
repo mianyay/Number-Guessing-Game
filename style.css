@@ -93,3 +93,19 @@ button:hover {
 #playagainbtn:hover {
     transform: scale(1.2);
 }
+
+.range {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+.range input {
+    width: 80px;
+    margin-bottom: 0;
+}
+
+#playagainbtn:disabled {
+    background: none;
+    opacity: 0.35;
+}

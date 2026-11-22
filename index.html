@@ -13,12 +13,17 @@
         </button>
         <h1>Number Guessing Game</h1>
         <div class="game">
+            <div class="range">
+                <label>From <input type="number" id="min-input" value="1"></label>
+                <label>To <input type="number" id="max-input" value="100"></label>
+            </div>
             <p>Guess a number between 1 - 100</p>
             <input type="number" id="guess">
             <button id="guess-btn">Guess</button>
             <p id="result"></p>
             <p id="attempts">Attempts: 0</p>
             <p id="highscore">Highscore:</p>
+            
         </div>
     </div>
     <script src="script.js"></script>

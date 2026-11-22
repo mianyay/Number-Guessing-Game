@@ -24,7 +24,6 @@ function newGame() {
     guessInput.value = "";
     guessInput.disabled = false;
     guessBtn.disabled = false;
-    playagainBtn.classList.add("hidden");
     guessInput.focus();
 }
 
@@ -53,7 +52,6 @@ guessBtn.addEventListener("click", () => {
         
         guessInput.disabled = true;
         guessBtn.disabled = true;
-        playagainBtn.classList.remove("hidden");
     } else if (guess < randomNumber) {
         result.textContent = "Your guess is too low! Try again";
     } else {
@@ -61,4 +59,11 @@ guessBtn.addEventListener("click", () => {
     }
 });
 
-playagainBtn.addEventListener("click", newGame)
+playagainBtn.addEventListener("click", () => {
+    newGame();
+    playagainBtn.classList.add("spin");
+});
+
+playagainBtn.addEventListener("animationend", () => {
+    playagainBtn.classList.remove("spin");
+});

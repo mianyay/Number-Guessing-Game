@@ -12,14 +12,16 @@ body {
     position: relative;
     max-width: 600px;
     padding: 1rem 4rem 2rem 4rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 1rem;
+    background: white;
 }
 
 h1 {
     text-align: center;
     font-size: 26px;
     margin-bottom: 10px;
+    text-decoration: underline;
+
 }
 
 .game {
@@ -44,7 +46,7 @@ input {
 
 button {
     color: #fff;
-    background: #4a6cf7;
+    background: #a09c9c;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -55,6 +57,7 @@ button {
 
 button:hover {
     transform: scale(1.2);
+    background: #585757;
 }
 
 #result {

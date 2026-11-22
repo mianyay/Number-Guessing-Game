@@ -133,13 +133,36 @@ button:hover {
 }
 
 .entry.low {
-    background: #4a6cf7;
+    background: #8aa2ff;
 }
 
 .entry.high {
-    background: #e5484d;
+    background: #992f33;
 }
 
 .entry.correct {
-    background: #30a46c;
+    background: #1e6844;
+}
+
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.confettiss {
+    color: rgb(41, 51, 146);
+    opacity: 50%;
+    position: absolute;
+    top: -50px;
+    font-weight: bold;
+    animation: confettifall linear forwards;
+}
+
+@keyframes confettifall {
+    to {
+        transform: translateY(110vh) rotate(var(--spin));
+    }
 }

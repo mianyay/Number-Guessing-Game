@@ -8,6 +8,7 @@ const minInput = document.getElementById("min-input");
 const maxInput = document.getElementById("max-input");
 const promptText = document.getElementById("prompt");
 const historyBox = document.getElementById("history");
+const confettiBox = document.getElementById("confetti")
 
 let min = 1
 let max = 100
@@ -58,6 +59,7 @@ function newGame() {
     historyBox.innerHTML = ""
     updatehighscore()
     guessInput.focus();
+    stopconfetti()
 }
 
 function duringrangeChange() {
@@ -71,8 +73,33 @@ maxInput.addEventListener("change", duringrangeChange);
 function addhistory(guess, type) {
     const entry = document.createElement("span");
     entry.classList.add("entry", type);
-    entry.textContent = type === "low" ? `${guess} too high` : type === "high" ? `${guess} too low` : `${guess} ✓` 
+    entry.textContent = type === "low" ? `${guess} too low` : type === "high" ? `${guess} too high` : `${guess} ✓` 
     historyBox.appendChild(entry);
+}
+
+let confettiTimer = null;
+
+function spawnconfettinumber(number) {
+    const piece = document.createElement("span");
+    piece.classList.add("confettiss");
+    piece.textContent = number;
+    piece.style.left = `${Math.random() *100}%`
+    piece.style.fontSize = `${16 + Math.random() * 28}px`
+    piece.style.animationDuration = `${3 + Math.random() * 3}s`;
+    piece.style.setProperty("--spin", `${(Math.random() - 0.5) * 720}deg`);
+    piece.addEventListener("animationed", () => piece.remove());
+    confettiBox.appendChild(piece);
+}
+
+function startconfetti(number) {
+    stopconfetti()
+    confettiTimer = setInterval(() => spawnconfettinumber(number), 120);
+}
+
+function stopconfetti() {
+    clearInterval(confettiTimer);
+    confettiTimer = null;
+    confettiBox.innerHTML = "";
 }
 
 guessBtn.addEventListener("click", () => {
@@ -85,7 +112,7 @@ guessBtn.addEventListener("click", () => {
     }
 
     result.style.fontSize = "";
-    
+
     const guessedAlready = [...historyBox.children].some(
         entry => parseInt(entry.textContent) === guess
     );
@@ -113,6 +140,7 @@ guessBtn.addEventListener("click", () => {
         }
 
         gameOver = true;
+        startconfetti(randomNumber)
         guessInput.disabled = true;
         guessBtn.disabled = true;
         playagainBtn.disabled = false;
@@ -134,8 +162,9 @@ playagainBtn.addEventListener("click", () => {
     playagainBtn.classList.add("spin");
 });
 
-playagainBtn.addEventListener("animationed", () => {
+playagainBtn.addEventListener("animationend", () => {
     playagainBtn.classList.remove("spin");
 });
 
+numberRange()
 newGame()
